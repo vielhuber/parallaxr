@@ -5,28 +5,28 @@ class parallaxr
 	{
 		this.item = item;
 	}
-    init()
-    {
+	init()
+	{
 		this.onInit();
 		this.onResize();
 		window.addEventListener('resize', () => { this.onResize(); } );
 		this.onScroll();
 		window.addEventListener('scroll', () => { this.onScroll(); } );
-    }
-    onInit()
-    {
+	}
+	onInit()
+	{
 		this.setImageDimensions();
-    }
-    onResize()
-    {
+	}
+	onResize()
+	{
 		this.setContainerDimensions();
 		this.setOccurence();
-    	this.checkDisabled();
-    }
-    onScroll()
-    {
+		this.checkDisabled();
+	}
+	onScroll()
+	{
 		this.setPosition();
-    }
+	}
 	setImageDimensions()
 	{
 		this.widthImage = this.item.querySelector('img').naturalWidth;
@@ -96,24 +96,24 @@ class parallaxr
 		let shift = Math.floor(percent * (((this.widthContainer/this.widthImage)*this.heightImage)-this.heightContainer));
 		this.item.querySelector('img').style.transform = 'translateY(-'+(shift)+'px)';
 	}	
-    checkDisabled()
-    {
-    	if( (this.widthImage/this.heightImage) > (this.widthContainer/this.heightContainer) )
-    	{
-    		this.disabled = true;
-    		this.item.querySelector('img').style.transform = 'translateY(0px)';
-    		this.item.querySelector('img').style.width = Math.floor((this.widthImage/this.heightImage)*(this.heightContainer))+'px';
-    		this.item.querySelector('img').style.left = ((-1)*(((this.widthImage/this.heightImage)*(this.heightContainer))-this.widthContainer)/2)+'px';
-    		this.item.querySelector('img').style.height = this.heightContainer+'px';
-    	}
-    	else
-    	{
-    		this.disabled = false;
-    		this.item.querySelector('img').style.left = '';
-    		this.item.querySelector('img').style.width = '';
-    		this.item.querySelector('img').style.height = '';
-    	}
-    }
+	checkDisabled()
+	{
+		if( (this.widthImage/this.heightImage) > (this.widthContainer/this.heightContainer) )
+		{
+			this.disabled = true;
+			this.item.querySelector('img').style.transform = 'translateY(0px)';
+			this.item.querySelector('img').style.width = Math.floor((this.widthImage/this.heightImage)*(this.heightContainer))+'px';
+			this.item.querySelector('img').style.left = ((-1)*(((this.widthImage/this.heightImage)*(this.heightContainer))-this.widthContainer)/2)+'px';
+			this.item.querySelector('img').style.height = this.heightContainer+'px';
+		}
+		else
+		{
+			this.disabled = false;
+			this.item.querySelector('img').style.left = '';
+			this.item.querySelector('img').style.width = '';
+			this.item.querySelector('img').style.height = '';
+		}
+	}
 	outerWidth(el)
 	{
 		return el.offsetWidth + parseInt(getComputedStyle(el).marginLeft) + parseInt(getComputedStyle(el).marginRight);
@@ -134,8 +134,8 @@ class parallaxr
 	{
 		return (el.getBoundingClientRect().top + window.pageYOffset - document.documentElement.clientTop);
 	}
-    static addStyles()
-    {
+	static addStyles()
+	{
 		let style = document.createElement('style');
 		style.innerHTML = `
 			.parallaxr
@@ -161,10 +161,10 @@ class parallaxr
 				max-width: none;
 				z-index: auto;
 			}
-	    `;
+		`;
 		let ref = document.querySelector('script');
 		ref.parentNode.insertBefore(style, ref);
-    }
+	}
 }
 window.onload = function()
 {
