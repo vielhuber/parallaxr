@@ -16,6 +16,7 @@ class parallaxr
     onInit()
     {
         this.setImageDimensions();
+        this.showImage();
     }
     onResize()
     {
@@ -31,6 +32,10 @@ class parallaxr
     {
         this.widthImage = this.item.querySelector('img').naturalWidth;
         this.heightImage = this.item.querySelector('img').naturalHeight;
+    }
+    showImage()
+    {
+        this.item.querySelector('img').style.opacity = '1';
     }
     setContainerDimensions()
     {
@@ -59,7 +64,6 @@ class parallaxr
     {
         if( this.disabled === true )
         {
-            console.log('DO NOTHING');
             return;
         }
         let pos = this.scrollTop(),
@@ -160,15 +164,17 @@ class parallaxr
                 height: auto;
                 max-width: none;
                 z-index: auto;
+                opacity:0;
+                transition: all 0.05s cubic-bezier(0, 0, 0, 1);
             }
         `;
         let ref = document.querySelector('script');
         ref.parentNode.insertBefore(style, ref);
     }
 }
+parallaxr.addStyles();
 window.onload = function()
 {
-    parallaxr.addStyles();
     [].forEach.call(document.querySelectorAll('.parallaxr'), function(el)
     {
         let item = new parallaxr(el);
