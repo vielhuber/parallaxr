@@ -165,7 +165,7 @@ class parallaxr
                 max-width: none;
                 z-index: auto;
                 opacity:0;
-                transition: all 0.05s cubic-bezier(0, 0, 0, 1);
+                transition: transform 0.05s cubic-bezier(0, 0, 0, 1), opacity 1s ease-in-out;
             }
         `;
         let ref = document.querySelector('script');
